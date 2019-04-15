@@ -3,7 +3,6 @@
 A summary of this text is available in the repository. This summary was accessed from faculty.washington.edu accessed on 15-04-2019.
 A pdf version of this text, 4th edition, is also in the repository. This was accessed from www .jlakes.org on 15-04-2019.
 
-
 ## Elementary Rules of Usage
 
 1. **(Peter's. Charles's) Use 's for possessive singular of nouns.** Exceptions are ancient proper names and pronominal prossessives hers, its, theirs, yours, and oneself. 
@@ -18,8 +17,8 @@ A pdf version of this text, 4th edition, is also in the repository. This was acc
 
 ## Elementary Principles of Composition
 
-9. **Paragraph is the unit of composition. One paragraph per topic.** Single sentences should not be a paragraph. In diaglogue, each speech is a paragraph by itself.
-10. **(To achieve this, must do that. Blah blah reasons. And so again emphasise that must do that to ahieve this) Begin each paragraph with a topic sentence; end it in conformity with the beginning.** In the body of the paragraph, you may include: 
+9. **Paragraph is the unit of composition. One paragraph per topic.** Single sentences should not be a paragraph. In dialogue, each speech is a paragraph by itself.
+10. **(To achieve this, must do that. Blah blah reasons. And so again emphasise that must do that to achieve this) Begin each paragraph with a topic sentence; end it in conformity with the beginning.** In the body of the paragraph, you may include: 
   > - topic sentence clarified by denial of the contrary, 
   > - repeated topic sentence in abridged form, 
   > - topic sentence made clearer, 
@@ -81,7 +80,7 @@ A pdf version of this text, 4th edition, is also in the repository. This was acc
   > - Correct usage: The game's cancellation **was due to** the rain.
   > - If "due to" can be replaced with "attributable to", "caused by", or "resulting from", then it is probably used correctly.
 - **Effect.** Do not confuse with "Affect". This term is vague and does not carry much meaning.
-- **Etc.** Equivalent to "and the rest", "and so forth". Not to be used if one of these substitutes would be insufficient. Should not be at the end of a list beginning with "such as", "for example", or any similar expression.
+- **Etc.** Equivalent to "and the rest", "and so forth". Should only be used if one of these substitutes can be used in place. Should not be at the end of a list beginning with "such as", "for example", or any similar expression.
 - **Fact.** Must be directly verifiable.
 - **Factor.** Avoid. 
 - **Feature.** Avoid.
