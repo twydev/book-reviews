@@ -3,7 +3,7 @@
 A summary of this text is available in the repository. This summary was accessed from faculty.washington.edu accessed on 15-04-2019.
 A pdf version of this text, 4th edition, is also in the repository. This was accessed from www .jlakes.org on 15-04-2019.
 
----
+
 ## Elementary Rules of Usage
 
 1. **(Peter's. Charles's) Use 's for possessive singular of nouns.** Exceptions are ancient proper names and pronominal prossessives hers, its, theirs, yours, and oneself. 
@@ -15,7 +15,7 @@ A pdf version of this text, 4th edition, is also in the repository. This was acc
 7. **(Being in a dilapitated condition, the house was a bargain for me) Participial phrase at the beginning of a sentence MUST refer to the grammatical subject (the house).** The counter example: Being in a dilapitated condition, I was able to buy the house cheap. (I became dilapitated LOL).
 8. **Wrap words getting cut of at the end of line to the next line by dividing it according to formation (know-ledge), or on vowel (propo-sition), or on double letters (refer-ring) unless they form a simple word (tell-ing).**
 
----
+
 ## Elementary Principles of Composition
 
 9. **Paragraph is the unit of composition. One paragraph per topic.** Single sentences should not be a paragraph. In diaglogue, each speech is a paragraph by itself.
@@ -43,7 +43,7 @@ A pdf version of this text, 4th edition, is also in the repository. This was acc
   > - Make clear at the start of the summary that what follows are thoughts or expressions of the author to prevent repeating notification.
 18. **(Dude is the carry of his team, because he is good at lane farming) Place the emphatic words of a sentence at the end.** The right way: Because of his good lane farming skills, dude is the carry of his team. As a rule of thumb, put the punch at the end. This applies to words in a sentence, sentences in a paragraph, paragraphs in a composition.
 
----
+
 ## Matters of Form
 
 - **Headings.** Leave a line after. Succeeding pages can start on line 1.
@@ -61,7 +61,7 @@ A pdf version of this text, 4th edition, is also in the repository. This was acc
 - **References.** Abbreviate titles that occur frequently, giving full forms in an alphabetical list at the end. Give references in parenthesis or footnotes.
 - **Titles.** Prefers italics with capitalised initials. Omit initial "A" or "The" if you placed the possessive before them (e.g. *The Assasin's Creed* or Ubisoft's *Assasin's Creed*).
 
----
+
 ## Words and Expressions Commonly Misused
 
 - **All right.** Always two words. May be replaced with "Agreed" or "Go ahead".
@@ -118,7 +118,7 @@ A pdf version of this text, 4th edition, is also in the repository. This was acc
 - **Worth while.** Avoid. Only applicable to actions. Do not follow with a noun.
 - **Would.** Do not use in place of should. Can often be dropped when expressing habitual or repeated actions.
 
---
+
 ## An Approach to Style
 
 1. Place yourself in the background.
