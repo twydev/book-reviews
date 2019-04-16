@@ -2,6 +2,8 @@ This book provides a practical approach to optimising python codes.
 The text and instructions are well organised and easy to pick up in a short time for programmers comfortable with python.
 I encourage everyone to buy this book.
 
+In future, I aim to prepare example codes following this book's approach and upload it to this repository.
+
 ---
 ### Application Design
 
@@ -56,19 +58,54 @@ cdef double var_doub
 /* get memory address of variable */
 &var_doub
 
-/* define a pointer variable (asterisk is part of the declaration), and assign it with a memory address */
+/* define a pointer variable (asterisk is part of the declaration), */ 
+/* and assign it with a memory address */
 cdef double *var_doub_ptr
 var_doub_ptr = &var_doub
 
-/* dereference a pointer to obtain a value stored in the memory address, by using special operator (asterisk) */
+/* dereference a pointer to obtain a value stored in the memory address, */
+/* by using special operator (asterisk) */
 cdef double value
 value = *var_doub_ptr
 
-/* C arrays are allocated in memory, and stores data contiguously. Multidimensional array writes data to memory in row-major */
+/* C arrays are allocated in memory, and stores data contiguously. */
+/* Multidimensional array writes data to memory in row-major */ 
+/* (i.e. row by row in continuous block) */
 cdef double arr[10]
 
-/* C array variables are also pointers, storing the address of the first array element */
+/* C array variables are also pointers, */
+/* storing the address of the first array element */
 arr == &arr[0]
 ```
 
 - use `cimport numpy` to use NumPy arrays that directly act on memory area, avoiding overhead from python interpreters.
+- use **typed memoryview** to manipulate arrays faster and with smaller memory footprints. This is available to data structures that implements the **buffer interface**.
+```
+/* define memoryview */
+cdef double[:] a
+cdef double[:,:] b
+
+/* binding memoryviews to arrays */
+arr = numpy.zeros(10, dtype='float64')
+a = arr
+```
+
+- use `cython -a program.pyx` to generate a HTML file that annotates each line of the code with the amount of corresponding interpreter calls.
+- use decorators such as `@cython.boundscheck(False), @cython.cdivision(True)` to shut down checks and improve speed. To apply to the entire module, use the directive `# cython: boundscheck=False`.
+- to use `cProfile`, include directive in the module `# cython: profile=True`.
+
+### Optimisation Step 5: Parallel processing
+
+Use the Python multiprocessing library.
+- Threads originating from a same process share the process memory.
+- Because of Global Interpreter Lock (GIL), only one Python is allowed to run at a time. This can still provide concurrency for I/O operations, but do not benefit from parallel processing.
+- GIL can be avoided by using multiple processes instead of threads.
+- use `multiprocessing` module, extending the `Process` class to create parallel processes. Define the task logic in `run()` method.
+- use `multiprocessing` module, `Pool` class, to manage a pool of worker processes, submit tasks using (a)synchronous `apply` or `map` functions.
+- use `multiprocessing` module, `Value` class to create shared variable across all worker processes.
+- use `multiprocessing` module, `Lock` class to provide locks and synchronise processes.
+
+use the Cython OpenMP specification:
+- use `cython.parallel` module to access constructs that process in parallel.
+- use `with nogil` calls to release GIL for a block of code, or use `nogil=True` options in parallel method calls.
+- to compile the extension, need to specify gcc option `-fopenmp` using `disutils.extension.Extension`.
