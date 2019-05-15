@@ -1076,7 +1076,7 @@ public class CustomTask implements Runnable {
         // initialise internal states
     }
     
-    public voud run() {
+    public void run() {
         // computation to be run in threads
     }
 }
@@ -1264,3 +1264,26 @@ Deadlocks can occur between two threads and two locks. Each thread has already a
 - A common technique to overcome this is resource ordering: always acquire locks from a fixed ordering of objects across all threads. This prevents unwanted blocking and resource contention.
 
 **Ending Thread Execution**
+
+Via Thread Cancelling
+- sending interrupt to a thread does not halt its execution.
+- the interrupted thread is responsible for checking for interruption and performs the necessary clean up. Certain IO operations can throw interrupted exception while some cannot.
+- if the thread is currently executing *wait* or *sleep*, then receiving an interrupt signal will cause the thread to throw an *InterruptedException*.
+- a common design pattern is to catch an interrupted exception in a method, and re-interrupt the thread in the catch clause. This is necessary as catching the exception clears the interrupted status of the thread. Also, re-interrupting instead of throwing an exception, allows the method caller to handle the interruption in its own implementation instead of having all callers handle an exception.
+
+Via Waiting
+- a thread can wait for another thread to terminate using *join* method on another thread, which will waits indefinitely until the target thread terminates.
+- if *join* returns, thread is guaranteed that the target has successfully returned from the *run* method.
+- *join* comes in different variant that will return once a given time has elapsed, or when target thread terminates, which ever occurs first.
+
+**Ending Application Execution**
+
+- each application starts with one thread that executes the Java *main* method.
+- the main thread can create other user threads or daemon threads (you can use setDaemon(true) on thread creation).
+- user threads are part of application. even when the *main* method exits and the origin thread terminates, the application is still considered to be running until all user threads terminates.
+- when the last user thread terminates, all daemon threads will be forced to terminate abruptly.
+- *System* or *Runtime* *exit* method can be used to terminate the application by stopping the current execution of JVM. (applications can install special threads to be run before shutdown).
+- certain classes inherently creates threads so using these classes may cause the application to persist. Use of *exit* method to terminate the threads may be necessary.
+
+**Memory Model: Synchronization and volatile**
+
