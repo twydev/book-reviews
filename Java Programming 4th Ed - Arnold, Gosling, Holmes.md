@@ -752,6 +752,7 @@ continue label; //skips the specified loop tagged by label to the next iteration
 ___
 
 ### 11. Generic Types
+
 Generic types can be used in place of *Object* types as generic references to allow more flexibility and also prevents runtime exceptions caused by wrong class casting.
 
 **Declarations**
@@ -860,12 +861,14 @@ nQueue.add(Integer.valueof(25)); //this is valid. The required wildcard is alway
 
 Wildcards can provide flexibility but requires a bit of planning to implement a good design.
 
+
 *Subsequent topics have been skipped as I didn't understand the content. Perhaps I will revisit this chapter in future.*
 
 
 ___
 
 ### 12. Exceptions and Assertions
+
 When an exception is thrown, the statement or expression that caused the exception complete abruptly. This causes the call chain to gradually unwind as each block or method invocation completes abruptly until the exception is caught. If the exception is not caught, the thread of execution terminates, after giving the thread's *UncaughtExceptionHandler* a chance to handle the exception.
 
 - Synchronous exception occurs directly as a result of the execution of a particular instruction or by a *throw* statement.
@@ -1287,3 +1290,226 @@ Via Waiting
 
 **Memory Model: Synchronization and volatile**
 
+Java guarantees that reading and writing of varibles are atomic (does not apply to *Long* and *Double*), however that does not guarantee that a thread will always be reading the most updated value of a variable.
+
+*Program Order* determines the sequence statements are executed, which based on the language is sequential. However, the *Memory Model* determines the value of variables read by thread.
+
+- Thread A prints value of a variable in a loop.
+- Thread B sets the value of the same variable to a random number, and does this for a few execution.
+- In the Memory Model, the variable now correspond to a set of possible values, set by Thread B.
+- The Memory Model is only required to return any of the possible values when variable is accessed by Thread A.
+- Using synchronised methods or blocks to access the variable ensures that only the latest value is read.
+- Declaring a field as *volatile* ensures all read access to the field are synchronised to show the latest value, but there is no exclusive locking, therefore it doesn't provide atomicity across actions. Volatile modifier will provide atomicity guarantee to *Long* and *Double* variables.
+
+Other synchronisation actions:
+
+- The parent thread is synchronised to the first action of its child thread, to ensure correct values are inherited.
+- Similarly, the final actions of a thread is synchronised to another thread calling *isAlie* or *join* on the exiting thread to ensure proper values are retrieved.
+- Ìnterrupting a thread synchronises with the thread throwing *InterruptedException* or another thread invoking *isInterrupted* on the thread.
+- The writing of default value (zero, null, false) to any field synchronises with the first action on the field so that any thread accessing the field at any time will be reading a valid value.
+
+**Final Field and Security**
+
+- immutable objects are not guaranteed to be synchronised across threads as references to the objects can be mutated/corrupted.
+- Using *final* field modifier ensures all threads accessing an object through a reference created after the object has been constructed, will be guaranteed to see the initialised values of all *final* fields in the object.
+- Extending on this, if a thread reads a reference from a final field, all non-final fields in the referenced object are guaranteed to have a value as recent as when the reference was written.
+- These preserves integrity of the system. The *String* class uses *final* fields internally to guarantee immutability and visibility.
+
+**The Happens-Before Relationship**
+
+So under the hood, how *volatile* works is to flush to the main memory or read from main memory, instead of accessing the respective CPU cache in a multithreaded execution. This behaviour establishes a happens-before relationship, that allows synchronisation between codes that are outside of synchronised blocks/methods/volatile variable.
+
+- If thread A modify variable var1, and then modify *volatile* variable var2.
+- If thread B first reads var2, then read var1.
+- We are guaranteed that from the perspective of thread B, write-read of var1 will always be synchronised, even though var1 is not declared *volatile*.
+- This is due to the happens-before relationship established by *volatile* var2. 
+
+> Any code that executes before a write to *volatile* variable is guaranteed to have happened for all other threads reading the same *volatile* variable.
+
+This happens because when the write occurs, all transaction is flushed to the main memory from the CPU cache.
+
+The same happens-before relationship is established when using a synchronised block/method.
+
+**Thread Management, Security, and ThreadGroup**
+
+*ThreadGroup* may be used to manage threads, placing common system and security limits to related threads, and providing hierarchy and organisation. Threads within a ThreadGroup can be limited to only access threads in the same group, they can be set a common threshold priority level, and they can also be interrupted together as a group.
+
+**Threads and Exceptions**
+
+- Exception that occur in a thread cannot be caught by a parent thread using the standard try-catch block surrounding the child thread *start* method. This approach only catches exception caused by *start* method, not exception within the child thread execution.
+- If exception occurs in a thread and the thread subsequently terminates, such exception will simply go unhandled and uncaught.
+- To handle such exceptions, you can either 
+  - *setDefaultUncaughtExceptionHandler* at a system/application level on the *Thread* class, so that if exceptions are not explicitly handled, it will ultimately be handled by this handler.
+  - extending *ThreadGroup* and overriding the definition of *uncaughtException* to handle it.
+  - or for each individual thread, *setUncaughtExceptionHandler* on the thread to specify a handler.
+
+**Stop**
+
+This method of terminating thread has been deprecated. But be careful as out there in the jungle, some programmers might still be having these methods in their code.
+
+- *stop* throws exception that breaks execution, potentially corrupting state of programs in critical section of threads. *Interrupt* is a better collaborative approach.
+- *stop* takes an exception as parameter, to be thrown in target thread, causing impossible checked exceptions to occur in threads.
+
+In conclusion, do not use *stop*.
+
+**Stack Traces**
+
+Stack traces can be accessed from all alive threads using *getStackTrace*. Stack trace of all threads can be obtained from the *Thread* class.
+
+**ThreadLocal variables**
+
+*ThreadLocal* class allows threads to create variables that has independent values across different threads. *InheritableThreadLocal* allows child threads to inherit the values of these variables from their parents, but they are still independent from other unrelated threads running the same program.
+
+Using this class is potentially dangerous when recycling threads in a thread pool as values from previous execution of the thread may be accessed by malicious code.
+
+**Debugging Threads**
+
+Some helpful methods to keep in mind:
+
+- *toString()* provides string representation of a thread.
+- *getId()* provides unique identifier of a thread.
+- *getState()* returns a *Thread.state* object representing the current state.
+- *dumpStack()* prints the current stack trace to *System.err*.
+- *list()* used for *ThreadGroup* to recursively print the string representation of threads in the group.
+
+
+___
+
+### 15. Annotations
+
+
+___
+
+### 16. Reflection
+
+
+___
+
+### 17. Garbage Collection and Memory
+
+Java creates object with *new* but does not have a corresponding *delete* to reclaim memory. Instead, stop referencing an object by assigning the reference to point to another object, or returning from a method will cause its local variable to no longer be reachable.
+
+- Garbage = objects that are no longer referenced.
+- Garbage Collection = process of finding and reclaiming such objects.
+- Garbage collection also guarantees that any object still in reference will not be reclaimed.
+- The Garbage Collector (GC) performs the collection at its discretion. A program with low memory requirements may complete execution and exits before any collection is performed.
+- In other languages, dangling references may cause read invalid values (an existing reference to a memory space being occupied by a new object as the old object was deleted, but this reference was never intended for the new object). GC will never reclaim objects and causes dangling reference, hence avoiding such problems.
+- Not allowing explicit deletion of objects also avoids double deletion problems.
+- Garbage collection is not foolproof. The programmer can still result in memory issues by create large quantity of objects that are not used but still referenced, or cause memory leaks by having arrays store references of objects no longer needed.
+
+**Simple Model**
+
+This is a simple model of Garbage Collection of how it works in theory. Actual Garbage Collection is more sophisticated.
+
+- Using a naive reference counting approach (counting number of references referencing the current object. Once the count reaches zero, object can be deleted.) will not work as a simple cyclical reference will cause the collection to never occur.
+- A classic approach is the mark-and-sweep (this is also used in Google Chrome V8 engine).
+  - firstly, starting from root references (variables in the program stack), mark out objects which are being referenced.
+  - next, mark out other objects referenced by those marked objects.
+  - finally when all valid references has been traversed, proceed to sweep up all unmarked objects.
+  - in this simple example, the execution of program will need to be suspended until the mark phase is completed. The actual JVM or runtime engines performing the actual collection will likely have more sophisticated techniques to make the collection efficient.
+
+**Finalization**
+
+The *finalize()* method in the *Object* class will be called by the GC before an object is reclaimed. Writing this method provides you an opportunity to reclaim other non-memory resources when the object is being reclaimed.
+
+If you attempt to clean up other memory resources using *finalize()* there is a chance that those objects have already been reclaimed, resulting in access to invalid state.
+
+For non-memory resources, usually the related specialised libraries provide their own clean up methods, such as *close* method in file I/O, so having the GC call *finalize* to clean up those resources are rarely required.
+
+A good practice for using *finalize* is to alway invoke *super.finalize* in a finally clause so that there can be a proper clean up if your object is extended from a superclass, and to also ensure that this clean up happens oeven if your own throws exception.
+
+If program exits before garbage collection happens then *finalize()* will not be performed.
+
+Nothing stops you from resurrecting an object by for example in the *finalize()* method insert this object, marked as garbage, as a reference into a static array on the current stack. Note that each object can only be finalised once, so this resurrection can only happen once. A better design is to clone the object, or to not use resurrect at all.
+
+**Interacting with Garbage Collector**
+
+- *System* and *Runtime* classes both provide methods to invoke GC.
+- The GC may not free any memory when invoked, because there is no garbage, or maybe the current implementation of GC cannot find garbage on demand.
+- hence explicit invocation of GC does not guarantee execution or freeing of memory.
+- but such invocation is a good practice before running memory intensive or critical operation to ensure as much memory is available to your program as possible and to avoid GC from running at a later time in the middle of the operation.
+
+**Reachability States and Reference Objects**
+
+- The *Reference* class allows you to create reference objects whose sole purpose is to maintain reference to other objects (referents) and to determine how GC should interact with those referents.
+- The primary class is the generic and abstract *Reference<T>* which provides the methods *get*, *clear*, *enqueue*, and *isEnqueued*. You may use one of the following four subclasses with differeing strength of reachability:
+  - Strong reference = normal reference, referent will not be reclaimed by GC.
+  - Soft reference = referent may be reclaimed by GC at its discretion if memory is low, provided the referent does not have other stronger reference. JVM will not throw out-of-memory error before reclaiming a weak reference.
+  - Weak reference = referent will be reclaimed by GC. GC will clear all weak references to the referent, then invoke *finalize*, then reclaim unless there are phantom reachable reference.
+  - Phantom reference = referent is not reachable in the normal sense. It merely provide references to referent that are already finalised, so that you can still manage them in the reference queue before reclaiming memory. (Note: *get* method of phantom reference always returns *null*).
+- Calling *get* on the *Reference* instance to obtain the referent will always create a strong reference by default as a local variable in the current program stack until this current method returns and the local variable becomes unreachable.
+
+**Reference Queues**
+
+- on creation, reference objects maybe associated with reference queues.
+- when GC determines that the referent has entered a state of reachability consistent with the strength of reference, the reference object will be enqueued.
+  - example a weak reference is created, associated to a queue, and the referent is used for certain tasks.
+  - since this happens in current program execution, the referent exist in the stack and has strong reference.
+  - however once the current method returns, it happens that the strong reference can no longer be reached.
+  - now the GC, at its own discretion, detects this state change, and determines that the referent has met the weak reference criteria (since the only reachable reference to the referent is now through the weak reference object).
+  - since the requirement has been met, GC will clear the weak reference object, and enqueue the reference object.
+- Therefore, whether a reference object will be enqueued is determined by whether the underlying referent has met the reachability strength condition, and once the reference object is enqueued, you can probably not reach the referent anymore.
+- You can *poll* (non-blocking) or call *remove* (blocking) on the queue to retrieve a reference object that has changed state and has been enqueued. This allows you to perform any follow up tasks necessary.
+
+A use case of this feature could be maintaining a pool of resources:
+
+- on request, a resource manager thread takes a resource from the pool and binds it to a key.
+- a phantom reference is created on the key, and associated to a reference queue.
+- the phantom referene is also added to a map, mapping to the resource.
+- the resource and the key is returned to the requesting thread.
+- resource manager now constantly polls the reference queue for state changes.
+- the calling thread now repeatedly use the key to access the same resource (it is like an authorisation mechanism within the resource, due to the binding in step 1).
+- the thread is allowed to exit after finishing all the tasks without the need to explicitly deallocate the resource.
+- as the thread terminates, the key is no longer reachable. GC determines it to be phantom reachable, and enqueue the phantom reference.
+- resource manager detects this condition from polling the queue, retrieves the allocated resource from the map using phantom reference.
+- resource manager cleans up the resource, and returns it to the pool.
+
+This design is more reliable than using *finalize()* method (as there is a chance GC never finalises your object if it deems that there is no necessity at its own discretion) to return the resource to the pool.
+
+**Finalization and Reachability**
+
+- An object is finalisable once it becomes weakly reachable.
+- It is not easy to determine expected reachability by looking at code statement sequence due to JVM optimisation.
+- References may be deemed unreachable by JVM right after construction after optimisation.
+
+Just to note. Advanced concepts on memeory model, synchronisation and JVM are not covered in this book.
+
+
+___
+
+### 18. Packages
+
+
+___
+
+### 19. Documentation Comments
+
+
+___
+
+### 20. The I/O Package
+
+
+___
+
+### 21. Collections
+
+
+___
+
+### 22. Miscellaneous Utilities
+
+
+___
+
+### 23. System Programming
+
+
+___
+
+### 24. Internationalization and Localization
+
+
+___
+
+### 25. Standard Packages
