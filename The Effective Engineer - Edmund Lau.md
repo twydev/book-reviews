@@ -344,4 +344,24 @@ For more radical changes, perhaps a thought experiment amd soliciting feedback f
 
 ---
 ### Improve Your Project Estimation Skills
+Based on a study done in 2009, out of 50,000 software projects survey, 44% are delivered late, overbudgeted or missing requirements.
+
+**Use Accurate Estimate to Drive Project Planning**
+
+In general, use effort estimate to plan project timeline, instead of setting deadline first then cramp your development effort. When target date is impossible, the only way is to either scale back on deliverables or push back the deadline, to avoid a disaster.
+
+To produce better estimates:
+
+- Decompose the project into granular tasks. this prevents hidden tasks from creeping up.
+- Estimate how long a task will take objectively, casting all agendas aside.
+- Estimates are probability distributions, not best-case scenarios. provide most probable outcome, not most ideal outcome.
+- The person executing the task should provide the estimates.
+- Beware of anchoring bias. avoid giving initial guesstimate and committing to the number without outlining the tasks.
+- Use multiple approaches to estimate the same task for more confidence. based on tasks, based on empirical data, based on number of systems etc.
+- Beware the mythical man-month. number of persons assigned to the task and time spent are not interchangeable, hence be very careful using man-day metrics.
+- Use timeboxing to constraint tasks that can grow in scope. examples are research and evaluation, set a hard deadline and force a decision within a time box.
+- Allow others to challenge the estimates.
+- iteratively improve the estimate. measure the actual effort and time taken, estimates can be refined to be more accurate as the project progresses, and reflect on making better estimates in future.
+
+**Budget for the Unknown**
 
