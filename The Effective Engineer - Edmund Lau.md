@@ -10,13 +10,13 @@
 > Silicon Valley would be a much better place for both managers and engineers if people embraced "working smart" rather than "working hard".
 
 ---
-### Introduction
+# Introduction
 Effectiveness is determined by both time taken and value produced. An effective engineer produces high value in a short time.
 
 ---
 # Adopt the Right Mindset
 
-### Focus on High-Leverage Activities
+### 1. Focus on High-Leverage Activities
 Leverage = Impact Produced / Time Invested
 
 High leverage activities meant that you will enjoy high ROI for your time and effort. This idea resembles the Pareto Principle (80-20 rule).
@@ -38,7 +38,7 @@ For every actvity you perform, ask yourself if any or all of the three improveme
 Resources are never sufficient. Adopt habits that produce disproportionately high impact for any time spent.
 
 ---
-### Optimize for Learning
+### 2. Optimize for Learning
 Optimizing for learning is a high-leverage activity for an effective engineer.
 
 **Adopt a Growth Mindset**
@@ -115,7 +115,7 @@ Here are some other points to cultivate a habit of learning outside of work:
 10. Pursue what you love.
 
 ---
-### Prioritize Regularly
+### 3. Prioritize Regularly
 Prioritising regularly is a most highly leveraging activity as it determines the amount of leverage for the rest of your time.
 
 **Track To-Dos in a Single, Easily Accessible List**
@@ -159,7 +159,7 @@ A myriad of workflow systems are available. Find that suits your needs. The auth
 ---
 # Execution
 
-### Invest in Iteration Speed
+### 4. Invest in Iteration Speed
 
 **Move Fast to Learn Fast**
 
@@ -208,7 +208,7 @@ Programming environment do not change drastically. Mastering the standard tools 
 Some bottlenecks may be outside your sphere of influence. Just do your best to optimise the biggest bottleneck within your control.
 
 ---
-### Measure What You Want to Improve
+### 5. Measure What You Want to Improve
 Having a good metric to quantify user happiness is important. Example given in the book for Google Search's succss is using long click (duration user spent on the linked page before returning to the search result page) as a measure for user satisfaction with the search results.
 
 **Use Metrics to Drive Progress**
@@ -294,7 +294,7 @@ Strategies you can consider:
 - when a number looks off, investigate early.
 
 ---
-### Validate Your Ideas Early and Often
+### 6. Validate Your Ideas Early and Often
 Faster iteration helps us get more things done. Frequent validation helps us get the right things done.
 
 **Find Low-Effort Ways to Validate Your Work**
@@ -343,7 +343,7 @@ Validation should be built into decisions made at all levels of management, not 
 For more radical changes, perhaps a thought experiment amd soliciting feedback from others would suffice.
 
 ---
-### Improve Your Project Estimation Skills
+### 7. Improve Your Project Estimation Skills
 Based on a study done in 2009, out of 50,000 software projects survey, 44% are delivered late, overbudgeted or missing requirements.
 
 **Use Accurate Estimate to Drive Project Planning**
@@ -365,3 +365,287 @@ To produce better estimates:
 
 **Budget for the Unknown**
 
+Changes may occur during the project that affects timeline:
+
+- creating new framework to follow best practices but this was not anticipated before project begins.
+- interrupted by high priority customers adhoc requests/incidents.
+- debugging for difficult-to-reproduce bugs.
+- tackle scalability problems.
+- manpower movements.
+- creating new subsystems for optimal performance when the original plan was to use third party libraries.
+- improving DevOps tools and processes to go faster, but required migration effort.
+
+The longer the project timeline, the higher the probability of disruption occuring. Build buffer time into the effort estimate. Simple exercise to keep track of time spent on tasks can bring awareness to all the other competing priorities distracting you from the work and provide a sanity check for the projected completion time.
+
+**Define Specific Project Goals and Measurable Milestones**
+
+Setting a concrete project goal helps to:
+
+- distinguish between the must-haves and the nice-to-have in the list of tasks, and prioritise work accordingly.
+- build clarity and alignment across key stakeholders.
+
+In addition, setting measurable milestones that generate value will keep the project on track and keep everyone focused on delivering the essentials. This also helps with communicating progress to management.
+
+**Reduce Risk Early**
+
+- Prioritise the hardest tasks in the project first, so that we may address any likely error in the effort estimation and adjust accordingly while there are still ahead of time.
+- Integration usually has a higher risk due to numerous and complex interactions between systems and the difficulty in splitting the work into smaller tasks. Try building end-to-end scaffolding and do system testing as soon as possible, even if it is partly functional and stubs need to be used.
+
+**Approach Rewrite Projects with Extreme Caution**
+
+- due to familiarity with original software, we tend to underestimate the effort of rewrites.
+- it is easy to introduce too many additional improvements as part of the rewrite.
+- any new features requested during rewriting must be added to both software, which increases risks and complexity the longer the project runs.
+
+In general, try to rewrite a large piece of code in smaller chunks and refactor incrementally while preserving system behaviour. This also provides flexibility to make changes during the rewrite.
+
+If this approach is not feasible as traffic cannot be sliced between new and old versions running simultaneously, then perform the rewrite in different targeted phases. For example, first migrate the language of the code base as phase 1, then fix problems in phase 2.
+
+**Don't Sprint in the Middle of a Marathon**
+
+Adding more hours to catch deadlines usually doesn't work:
+
+- hourly productivity decreases with additional hours worked, just like the Law of Diminishing Marginal Return.
+- additional hours can burn out teammates.
+- you are probably way behind schedule that the extra hours don't matter.
+- extra hours can hurt team dynamics.
+- communication overhead increases as deadline draws near.
+- sprint towards deadline incentivises technical debt.
+
+In general, it is more realistic to either extend the deadline or deliver what is possible. If overtime has to happen, try these approach:
+
+- ensure the team understands why they are behind schedule.
+- develop a realistic and revised plan and timeline.
+- be ready to abandon the sprint if you slip further from deadline.
+
+---
+# Build Long-Term Value
+
+### 8. Balance Quality with Pragmatism
+
+High software quality enables you to scale and also speed of delivery, however it is also possible to create too much overhead with code reviews, standardisation, and test coverage that it produces diminishing returns and improvement in quality reduces effectiveness instead. Striking a balance is essential.
+
+**Establish a Sustainable Code Review Process**
+
+Code reviews helps to: 
+
+- catch bugs or design issues early.
+- increases accountability.
+- set a positive model of good code.
+- shares working knowledge of codebase.
+- increases long-term agility to make changes in future.
+
+In order to gain these benefits and balance effectiveness, code review need not be absolute. Review can be conducted in many flavours:
+
+- over-the-shoulder code walk through.
+- pair programming in place of review.
+- review the trickiest part of code only.
+- post-commit review.
+- review only business logic codes in models and controllers.
+- using code review tools to speed up and simplify the process.
+
+**Manage Complexity through Abstraction**
+
+Providing abstraction, in the form of libraries/SDK/APIs, allows engineers to avoid writing cumbersome codes that deals with lower level logic. It helps to:
+
+- reduce complexity of the original problem into easy-to-understand primitives.
+- reduce future application maintenance and makes it easier to make improvements.
+- implement foundation code once and use them repeatedly for many times.
+
+However, it is possible to overinvest in creating abstraction that detract you from your main project goals. It is also possible to create bad abstraction, that not only waste development time of anyone using them, but also becomes a liability in future.
+
+Features of a good abstraction:
+
+- easy to learn
+- easy to use without documentation
+- hard to misuse
+- sufficiently powerful to satisfy requirements
+- easy to extend
+- appropriate to the audience
+
+To aid in your learning, start with:
+
+- studying popular abstraction in your work codebase/GitHub repository, and try extending them.
+- studying key abstractions released by large tech companies (ProtoBuff, Thrift, Hive, MapReduce etc.) to understand what makes them essential to other developers.
+- studying other popular APIs to learn what makes them easy to use.
+
+**Automate Testing**
+
+- Having a library of tests in place builds confidence and overcomes the fear of making changes, especially when these changes are not implemented by the origical code authors.
+- It may be hard to introduce testing bacause of the investment required or because of organisational inertia. Take baby steps and start from the test with highest impact to exhibit value.
+- Automated testing allows you to quickly zoom in to bugs and find the party accountable to make the fixes.
+
+In conclusion, automated testing reduces overall error rates of each iteration, compounding the benefit, making it a high leverage activity despite its initial cost.
+
+**Repay Technical Debt**
+
+Technical Debt = deferred work that is necessary to improve the health and quality of the codebase, and would be a liability if left unaddressed.
+
+Incurring technical debt allows you to deliver faster in the short run, only if you promptly repay the debt. Left unattended in the long run, debt-ridden code will severely impede progress.
+
+Technical debt can happen when we take shortcuts using quick and dirty workarounds, or when we did not fully understood the problem space and implemented a primitive solution.
+
+Try having a regular schedule to fix technical debt. Also, try to prioritise fixing the highest leverage code first.
+
+---
+### 9. Minimize Operational Burden
+
+If we create software that compounds operational efforts (scale features, maintain uptime, fix bug, new recruit onboarding) over time in order to perform, then eventually the entire development team will be engulfed by operations work.
+
+**Embrace Operational Simplicity**
+
+Steve Jobs:
+
+> the first solutions you come up with are very complex ... but if you keep going ... and peel more layers of the onion off, you can often times arrive at some very elegant and simple solutions.
+
+Having a complex architecture imposes the following costs:
+
+- engineering expertise gets splintered across multiple systems.
+- increased complexity introduces more potential single points of failure.
+- onboarding new engineers face a steeper learning curve.
+- dilute effort towards improving abstractions and tools.
+
+In general, try to always use the simplest solution that can get the job done while also reducing operational burden.
+
+**Build Systems to Fail Fast**
+
+The more directly we can link a bug to the source, the more quickly we can reproduce the problem and resolve the issue. An approach to achieve this is to Fail Fast = failiing immediately and visibly.
+
+- crashing at startup when there is config errors.
+- input validation.
+- throw error from external service instead of surpressing it.
+- throw exception when changes in data structure causes dependants to be unusable.
+- throw exception when data structure is corrupted instead of propagating the corruption.
+- assert key invariants before and after complex logic.
+
+This does not mean crashing the system, but to highlight problems as close to the source as possible. A typical flow could be to handle issues by a global exception handler that reports to engineers while failing gracefully for the end users. The handler can even log the exception, and aggregate it to show engineers the problem in a visualised manner to facilitate debugging.
+
+**Relentlessly Automate Mechanical Tasks**
+
+The decision point is usually: will you save more time overall by manually doing a task or by paying the upfront investment of automating it?
+
+Reasons why engineers automate less frequently than they should:
+
+- lack of time.
+- tragedy of the commons.
+- not familiar with automation tools.
+- underestimate frequency of recurrence.
+- did not evaluate total time saved.
+
+Things that you can consider automating:
+
+- validation.
+- extract-transform-aggregation of data.
+- detect spikes in error rate.
+- build and deploy software.
+- capture and restore database snapshot.
+- run batch computations.
+- restarting services.
+- code style conformity checks.
+- training ML model.
+- user account/data management.
+- add/remove server from groups.
+
+Note that automating mechanics is straight forward, but automating decision making carries a much higher risk and you may still want to rely on manual process. For a start, automate mechanics first.
+
+**Make Batch Processes Idempotent**
+
+idempotency = produces the same results regardless of whether a process is run once or multiple times.
+
+If idempotence is not possible, at least make your process retryable. This can help you manage script crashes. Also, processes that cannot be retry typically leaves side effect that affect certain global state.
+
+Idempotence allows you to run processes more frequently to expose problems earlier. This can also help to reduce the chances of logging false positives as incidents.
+
+**Hone Your Ability to Respond and Recover Quickly**
+
+The Chaos Monkey system in Netflix kills services in its own infrastructure randomly to see how resilient their systems are, and how well they recover from failure.
+
+No matter how carefully we try to prevent them, unexpected failures will still occur. Therefore, being able to recover quickly is more important than prevention.
+
+It is helpful to map out failure scenarios, put contingencies in place, and simulate the scenario to be prepared to recover from failure.
+
+This applies to non-technical aspects, such as changes in management direction, manpower movements, user revolt etc.
+
+---
+### 10. Invest in Your Team's Growth
+
+Your effectiveness is often measured by the impact of the entire team. Therefore, if everyone else is successful, you will be swept along by the tide even if you did nothing.
+
+**Make Hiring Everyone's Responsibility**
+
+Hiring often provides more leverage than the actual development work.
+
+A good interview process:
+
+- screen for people likely to do well on the team.
+- gets candidate excited about the team, mission, and culture.
+- ask questions with high signal-to-noise ratio, usually pertaining to qualities most correlated with success of the team.
+- controlled pace to maintain high signal-to-noise ratio and prevent going off track.
+- firing short-answer questions to probe a wide surface area can surface red flags.
+
+To iteratively improve the interview process:
+
+- discuss with the team to identify qualities they care about in their potential new teammates, and make sure these are covered by the questions.
+- periodically revise the process by looking at how well the new hires are performing.
+- design questions with multiple layers of difficulty that can be added/removed to tailor to the current candidate's abilities.
+- shadow different team members during interviews to calibrate ratings across interviewers and promote feedback.
+- dare to try unconventional interview approaches to help you identify signals.
+
+**Design a Good Onboarding Process**
+
+Good onboarding allows new engineers to be productive faster, making this a high leverage activity.
+
+To create a good onboarding process:
+
+- identify onboarding goals the team wants to achieve.
+- construct a set of mechanisms to accomplish these goals.
+
+As with all other processes mentioned in this book, this is again an iterative process and a good onboarding experience can be incrementally reviewed and improved upon.
+
+**Share Ownership of Code**
+
+Sharing ownership helps everyone in the team. No one is held solely responsible for any tasks, and they will be able to go for vacations in peace. The management is also better able to react to manpower movements.
+
+- avoid one-man team.
+- review each other's code and software designs.
+- rotate tasks and responsibilities in the team.
+- keep code readable and high quality.
+- give talks on software decisions and architecture.
+- document, at high-level and in code-level comment.
+- document complex workflow and non-obvious workarounds.
+- invest time to teach and mentor others.
+
+**Build Collective Wisdom through Post-Mortems**
+
+After a high priority incident, the goal of post-mortem is not to assign blame, which is counterproductive, but to work together to identify better solutions.
+
+If situation is not preventable, then focus on making recovery easier.
+
+Post-mortems help to measure success, provided the metric is well-defined.
+
+Document and distribute post-mortem information will help other teams avoid the same problems, and prevent loss of knowledge from manpower movements.
+
+Ultimately, compiling lessons learned requires honest conversation, in a culture comfortable and open to failure and receptive to feedback.
+
+**Build a Great Engineering Culture**
+
+From  the author's past experience, a great engineering culture has the following characteristics, many are covered in earlier chapters:
+
+1. Optimised for iteration speed.
+2. Push relentlessly for automation.
+3. Build the right software abstraction.
+4. Focus on high code quality through code reviews.
+5. Maintain a respectful work environment.
+6. Build shared ownership of code.
+7. Invest in automated testing.
+8. Have time to experiment, through 20% time or hackathon.
+9. Foster culture of learning and continuous improvement.
+10. Hire the best.
+
+Great culture isn't built in one day. It improves iteratively, and as a great culture attracts stronger talent, the positive feedback cycle propagates.
+
+---
+# Epilogue
+Edmund Lau, the awesome author:
+
+> Time is our most finite asset, and leverage - the value we produce per unit time - allows us to direct our time toward what matters most.
