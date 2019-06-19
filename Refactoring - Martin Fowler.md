@@ -3,14 +3,12 @@
 
 *Martin Fowler, Kent Beck (contributor), John Brant (contributor), William Opdyke, Don Roberts, 2002*
 
----
-### Notes
+## Notes
 This post is a quick reminder to myself, describing what I have learnt from the book.
 
 I encourage you to pick up the actual book and read it because the example codes published in the book help to illustrate the key concepts of refactoring, which cannot be entirely conveyed through summary notes.
 
----
-# What is refactoring and why do we refactor codes?
+## What is refactoring and why do we refactor codes?
 
 ### Chapter 1: Refactoring, A First Example
 This chapter showcase a small program that is part of a larger software, responsible for computing rental charges and printing customer statements. The initial version of the program cannot easily incorporate new features or changes to business logic.
@@ -129,18 +127,42 @@ Refactoring and Performance:
 - Focus on refactoring first, and then only optimise the code after having performance profiling. This will significantly reduce wasted effort to optimise portions of codes that only run once.
 
 
----
-# Where should we refactor?
+## Where should we refactor?
 
 ### Chapter 3: Bad Smells in Code
+This chapter provides examples of smelly codes that should be refactored. However, the author also emphasise that we should develop the intuition to identify what needs refactoring as there are no hard rules that can be easily defined.
 
----
-# How to refactor
+> If it stinks, change it.
+
+1. **Duplicated Code** - duplicated code structure in two methods, or classes, or even having the same expression in two places.
+2. **Long Method** - places that need comments are indication of semantic distance and should be refactored into a separate method for clarity. Even if it is just one line of code. Conditionals and loops are also indication of codes to be extracted to a new method.
+3. **Large Class** - indicated by too many instance variables and too much code. Break down into smaller classes, subclass certain behavior, split into new and seperate domain objects.
+4. **Long Parameter List** - replace by passing an object or method that can be used to query for the necessary parameters. Exception is when you want to be totally independent from other objects and want to pass parameters by value.
+5. **Divergent Change** - many different kinds of changes made to the software require code modification in the same method or class is an indication that the internals of that class/method should be refactored, so that different kinds of changes modify different classes/methods.
+6. **Shotgun Surgery** - inversion of divergent change. If a single event requires code changes in 3 classes, it is a clear indication that some codes from these 3 classes can be extracted to form a new class/method.
+7. **Feature Envy** - occurs when a method is more interested in getting and orocessing data from an object of a different class, instead of its own class. Keep data and methods that changes together in the same class.
+8. **Data Clumps** - data fields that always appear together should be grouped in an object. A good test of relevance is to delete one field and see if the rest of the data fields still make sense.
+9. **Primitive Obsession** - instead of using primitives, use classes to form the foundation Type used by other objects and methods, and also group data values within objects.
+10. **Switch Statements** - use polymorphism to replace switch statements. 
+11. **Parallel Inheritance Hierarchies** - edge case of shotgun surgery. Occurs when subclassing a class requires you to make a seperate subclass in another class, as if both classes mirror their class hierarchy. You may try to make objects of one hierarchy reference the objects of the other hierarchy.
+12. **Lazy Class** - class that used to serve a purpose but is not so meaningful now and can be deleted or broken up and merged with other classes.
+13. **Speculative Generality** - usually indicated by classes and methods that were overly complicated to serve a future use case that may or may not happen. Remove such abstract classes, methods, parameters to methods.
+14. **Temporary Field** - usually occurs when object attributes or variables are only set for very specific purpose, but hangs around within the execution context doing nothing but confuse others. Refactor the fields to group them with the specific method that uses them into a method object.
+15. **Message Chains** - an getting an object from another object, which internally gets it from yet another object. Observe the end result required and extract the necessary method to achieve this.
+16. **Middle Man** - when delegation and encapsulation gets out of hand, and a class/object only house methods with the sole purpose of calling other objects/methods. You can call the underlying objects directly without the middle man and it would not make much of a difference.
+17. **Inappropriate Intimacy** - when too classes are overly dependent on each other's internal structures or private fields/methods. Extract commonality between the two classes into a new class, or make one class the subclass of the other.
+18. **Alternative Classes with Different Interfaces** - consolidate them. May need to create a super class.
+19. **Incomplete Library Class** - extend or encapsulate external libraries that does not fully meet your needs.
+20. **Data Class** - dumb data container class. Ensure there are no public access fields or collections. Move behaviours into the data class so that it gains more responsibilities besides holding data.
+21. **Refused Bequest** - when a subclass does not want to use some of the methods/fields inherited from the superclass. This smelliness can still be accepted, but if the subclass is using interfaces that refuse the superclass, this is some kind of anti-pattern. The subclass should be refactored to a standalone class that delegates to the superclass for whatever necessary execution. Then the class will have no problem using an interface that does not support the superclass.
+22. **Comments** - usually indicate smelly code that should be refactored. Before writing comments, try refactoring first. Useful comments usually **describe why** a code was design the way it is, instead of **explaining what** the code is currently doing.
+
+
+## How to refactor
 
 ### Chapter 4
 
----
-# Guest Contributions
+## Guest Contributions
 
----
-# Reference Catalog
+
+## Reference Catalog
