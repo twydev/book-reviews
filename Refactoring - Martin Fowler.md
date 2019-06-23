@@ -160,9 +160,50 @@ This chapter provides examples of smelly codes that should be refactored. Howeve
 
 ## How to refactor
 
-### Chapter 4
+### Chapter 4: Building Tests
+Frequent testing after every change is made improves overall productivity. Debugging is much faster when you can narrow down the bugs to the previous change.
+
+- Use a unit test framework that makes it easy to add new tests, group tests together, and to conveniently run all tests.
+- The tests should indicate and differentiate between failures and errors.
+- Bugs identified by functional testing should be supplement by new unit tests that exposes the bug. If the logic is complex, try to write multiple unit tests, each with a smaller scope to narrow down the failure. Once the bug has been fixed, all these unit tests should provide you assurance that no other bugs that cuase the same error falls through the crack.
+- To avoid writing too many tests, evaluate the risks of each test scope, and write test for those that poses high risk.
+- Write tests for boundary cases, and special cases.
+- Write tests to ensure that exceptions and expected errors occur properly.
+- When dealing with inheritance and polymorphism, consider the 80/20 rule. Test to make sure that the most probable cases and combinations of objects are working correctly.
 
 ## Guest Contributions
 
+### Chapter 13: Refactoring, Reuse, Reality - William Opdyke
+
+### Chapter 14: Refactoring Tools - Don Roberts, John Brant
+
+### Chapter 15: Putting It All Together - Kent Beck
 
 ## Reference Catalog
+Please refer to the book for detailed examples for each type of refactoring.
+
+### Chapter 6: Composing Methods
+Most of the time, problems come from methods that are too long. This chapter deals with refactoring methods: how to handle temporary variables, input parameters, good naming conventions (for variables and methods) and how to replace algorithm implementation.
+
+### Chapter 7: Moving Features Between Objects
+A key decision to make when refactoring is in object design, and where to assign responsibilites. This chapter talks about strategy to move methods and fields between objects, creation of new classes, delegation, extension, and considering the possbility of future changes when making such decisions.
+
+### Chapter 8: Organizing Data
+One advantage of object languages is to the ability to group data with objects. This chapter addresses encapsulating data structure, association between objects (MVC, uni/bi-directional), and handling of type codes.
+
+### Chapter 9: Simplifying Conditional Expressions
+This chapter talks about decomposing and consolidating conditionals, using polymorphism, strategy for using null objects and assertions.
+
+### Chapter 10: Making Method Calls Simpler
+This chapter once again deals with refactoring methods, but focusing on method signatures, parameters, separation between queries and modifiers, using factory methods to replace constructors, casting, and throwing exceptions.
+
+### Chapter 11: Dealing with Generalization
+Generalisation would will make the program more extensible and flexible. This refactoring would require reorganising the inheritance hierarcy, which is the focus of this chapter.
+
+### Chapter 12: Big Refactorings
+This chapter provides the bigger strategy and overview of refactoring, keeping in mind the purpose we are trying to achieve.
+
+- **Tease Apart Inheritance** - about tangled inheritance that confuses people.
+- **Convert Procedural Design to Objects**
+- **Separate Domain from Presentation** - separate business logic from UI.
+- **Extract Hierarchy** - reorganising classes.
