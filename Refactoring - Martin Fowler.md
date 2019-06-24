@@ -174,10 +174,37 @@ Frequent testing after every change is made improves overall productivity. Debug
 ## Guest Contributions
 
 ### Chapter 13: Refactoring, Reuse, Reality - William Opdyke
+Developers are reluctant to refactor their code because of one of the following reasons:
+
+- they do not understand how to refactor.
+- they will no longer be with the project to enjoy the long-term benefits.
+- refactoring is an overhead activity and they prioritise adding new features.
+- refactoring may break the program.
+
+The author goes on to address each of these reasons and how we may overcome them. We can learn how to refactor by reading this book and practicing. We have to understand that refactoring has short-term benefits too, making debugging faster and improving overall development time immediately. We can reduce refactoring overhead by using tools and technlogies to assist us, and making refactoring part of our development regime to adopt it as a habit. Lastly, refactoring can be made safe with the use of tools, test suites, and code reviews.
+
 
 ### Chapter 14: Refactoring Tools - Don Roberts, John Brant
+A good refactoring tool should satisfy the following requirements:
+- ability to search for program entities across the entire program, and be able to differentiate functions and varables of the same name.
+- must preserve the behaviour of a method when the internal of the method is being refactored (analysed under the hood using a Parse Tree).
+- speed and accuracy (safety) tradeoff. Some tools do not provide all refactoring capabilities so that they can maintain certain level of speed and safety.
+- ability to undo refactoring changes, or even version control.
+- integration with IDE.
+
 
 ### Chapter 15: Putting It All Together - Kent Beck
+Here is how you may pick up the skill of refactoring:
+
+1. Get used to setting a goal (specific and small issue to address by refactoring the code).
+2. Stop when you are unsure.
+3. Backtrack when necessary.
+4. Refactor with a partner.
+
+You know you are mastering the skill when you feel absolute confidence that no matter how screwed up the code was handed to you, you can make the code better, or make it good enough to keep development going. Also, you need to gain the ability to stop refactoring, with confidence.
+
+Eventually, when you feel that the design of any system is fluid and moldable, and you are able to perceive the whole design at once, that is when you have mastered the skill.
+
 
 ## Reference Catalog
 Please refer to the book for detailed examples for each type of refactoring.
